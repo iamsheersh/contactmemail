@@ -69,7 +69,8 @@ const port = 3000;
 // Configure CORS to allow requests from your live-server's origin
 // Replace 'http://127.0.0.1:8080' with the actual URL live-server is running on if it's different.
 app.use(cors({
-    origin: 'http://127.0.0.1:8080'
+  //  origin: 'http://127.0.0.1:8080'
+      origin: 'https://eloquent-axolotl-59643c.netlify.app/'
 }));
 app.use(express.json());
 
