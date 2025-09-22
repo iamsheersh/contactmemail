@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Form</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif']
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
             }
-          }
         }
-      }
     </script>
     <style>
         body {
@@ -36,12 +35,12 @@
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-300">Your Name</label>
                 <input type="text" id="name" name="name" required
-                       class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div>
                 <label for="email" class="block text-sm font-medium text-gray-300">Your Email</label>
                 <input type="email" id="email" name="email" required
-                       class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                    class="mt-1 block w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div>
                 <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
@@ -58,21 +57,17 @@
 
     <script>
         document.getElementById('contactForm').addEventListener('submit', function(event) {
-            // Prevent the default form submission behavior
             event.preventDefault();
 
-            // Display a sending message
             const messageBox = document.getElementById('messageBox');
             messageBox.textContent = 'Sending your message...';
             messageBox.className = 'mt-4 p-4 rounded-md text-center bg-gray-700 text-gray-300 block';
 
-            // Gather the form data
             const formData = new FormData(event.target);
             const data = Object.fromEntries(formData.entries());
 
-            // The URL for your backend server. REPLACE THIS URL with your deployed URL.
-            // **CHANGE THIS LINE TO USE YOUR LOCALHOST SERVER URL**
-            const serverUrl = 'https://eloquent-axolotl-59643c.netlify.app/';
+            // The correct URL for your Netlify serverless function
+            const serverUrl = 'https://eloquent-axolotl-59643c.netlify.app/.netlify/functions/server';
 
             fetch(serverUrl, {
                 method: 'POST',
@@ -91,7 +86,6 @@
                 console.log('Success:', result);
                 messageBox.textContent = 'Message sent successfully!';
                 messageBox.className = 'mt-4 p-4 rounded-md text-center bg-green-500 text-white block';
-                // Reset the form after successful submission
                 document.getElementById('contactForm').reset();
             })
             .catch(error => {
@@ -101,7 +95,6 @@
             });
         });
 
-        // Function to create a custom modal/message box
         function showMessage(message, type) {
             const messageBox = document.getElementById('messageBox');
             messageBox.textContent = message;
